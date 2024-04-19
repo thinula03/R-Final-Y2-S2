@@ -1,0 +1,43 @@
+install.packages(c('readr', 'ggplot2', 'tidyr', 'dplyr'))
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+data <- read.csv("/Users/thinuladamsith/Final Project/enrolment.csv")
+data
+
+data$Enrollment_Status <- factor(data$Enrollment_Status, levels = c(
+  "New",
+  "Resolved",
+  "Closed",
+  "Active",
+  "Awaiting User Info",
+  "Awaiting Problem"
+))
+data$Enrollment_Status <- as.numeric(data$Enrollment_Status)
+
+data$Active_Status <- as.integer(data$Active_Status)
+data$Active_Status <- as.logical(data$Active_Status)
+
+data$Student_ID <- as.integer(factor(data$Student_ID))
+
+data$Opened_By <- as.integer(factor(data$Opened_By))
+data$Opened_By <- as.character(factor(data$Opened_By, labels = levels(factor(data$Opened_By))))
+
+
+library(lubridate)
+data$Application_Created_At <- dmy_hm(data$Application_Created_By)
+
+install.packages("stringr")
+library(stringr)
+data$Opened_At <- dmy_hm(data$Opened_At)
+data$Application_Created_At <- dmy_hm(data$Application_Created_By)
+
+dd <- read.csv("/Users/thinuladamsith/Final Project/enrolment.csv")
+dd$Application_Created_At <- dmy_hm(dd$Application_Created_At)
+dd$Last_Updated_At <- dmy_hm(dd$Last_Updated_At)
+dd$Resolved_At <- dmy_hm(dd$Resolved_At)
+dd$Closed_At <- dmy_hm(dd$Closed_At)
+
+write.csv(dd, file = './modified.csv', row.names = FALSE)
