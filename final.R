@@ -340,3 +340,9 @@ pie(freq_notify, main = "Notification Status")
 
 freq_resolved <- table(final_enrol$Resolved_By)
 pie(freq_resolved, main = "Resolved By")
+
+new_final_enrol <- final_enrol
+
+check <- colSums(is.na(new_final_enrol))
+
+write.csv(new_final_enrol, file = "new_final_enrol.csv", row.names = FALSE)
