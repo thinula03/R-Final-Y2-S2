@@ -23,3 +23,36 @@ print(all_paths)
 optimal_path <- shortest_paths(process_graph, from = "Opened_At", to = "Closed_At", mode = "out")
 print(optimal_path)
 
+
+optimal_path_vertices <- V(process_graph)[optimal_path$vpath[[1]]]$label
+print(optimal_path_vertices)
+
+
+
+all_paths <- all_simple_paths(process_graph, from = "Opened_At", to = "Closed_At", mode = "out")
+
+shortest_length <- Inf
+shortest_path <- NULL
+
+for (path in all_paths){
+  path_length <- length(path)
+  
+  if (path_length < shortest_length){
+    shortest_length <- path_length
+    
+    shortest_path <- path
+  }
+}
+
+optimal_path_vertices <- V(process_graph)[shortest_path]$label
+print(optimal_path_vertices)
+
+
+
+
+
+
+
+
+
+
