@@ -1,4 +1,4 @@
-df <- read.csv("C:\\Users\\Nadheem Hassim\\OneDrive\\Documents\\GitHub\\R-Final-Y2-S2\\new_final_enrol.csv")
+df <- read.csv("new_final_enrol.csv")
 df
 
 install.packages("igraph")
